@@ -1,3 +1,7 @@
-from django.shortcuts import render
+from rest_framework import generics
+from .models import MessageInput
+from .serializers import MessageInputSerializer
 
-# Create your views here.
+class MessageInputListAPIView(generics.ListCreateAPIView):
+    queryset = MessageInput.objects.all()
+    serializer_class = MessageInputSerializer

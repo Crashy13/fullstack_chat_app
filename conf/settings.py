@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'rest_framework',
 
     # local
+    'api.apps.ApiConfig',
+    'chatmessages.apps.ChatmessagesConfig',
     'frontend.apps.FrontendConfig',
     'messageinputs.apps.MessageinputsConfig',
 ]
