@@ -49,9 +49,9 @@ class MessageInputs extends React.Component {
       </li>
     ))
     return(
-      <form onSubmit={this.addMessage}>
-      <input type="text" name="message" value={this.state.message} onChange={this.handleInput}/>
-      <button type="submit">Send</button>
+      <form className="input_field" onSubmit={this.addMessage}>
+      <input className="type_input" type="text" name="message" value={this.state.message} onChange={this.handleInput}/>
+      <button className="button_input" type="submit">Send</button>
       </form>
     )
   }
