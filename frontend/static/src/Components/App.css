@@ -27,6 +27,7 @@ header {
   margin: 1% 25%;
   border: 1px solid black;
   background-color: #2D313B;
+  border-radius: 20px;
   color: #FFF;
 }
 
@@ -34,16 +35,11 @@ header {
 .message_display {
   align-self: flex-end;
   border: 1px solid blue;
-  background: #a9a9a9;;
+  background: #5F8BEB;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-li:nth-child(odd) .message_display {
-  align-self: flex-start;
-  background: #5F8BEB
 }
 
 .type_input {
@@ -52,4 +48,6 @@ li:nth-child(odd) .message_display {
 
 .button_input {
   width: 25%;
+  margin: 5px 0 10px 5px;
+  border-radius: 20px
 }
