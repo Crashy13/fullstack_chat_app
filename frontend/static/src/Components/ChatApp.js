@@ -2,6 +2,8 @@ import React from 'react';
 import './App.css';
 import ChatWindow from './ChatWindow'
 import MessageInputs from './MessageInputs'
+import Registration from './Registration'
+import Login from './Login'
 
 class ChatApp extends React.Component {
   constructor(props) {
@@ -17,6 +19,8 @@ class ChatApp extends React.Component {
     return (
       <>
         <header>MESSENGER</header>
+        <Registration />
+        <Login />
         <div className="container">
           <div className="window">
           <ChatWindow messages={this.state.messages} />
