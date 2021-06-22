@@ -18,27 +18,27 @@ class MessageInputs extends React.Component {
     this.setState({[e.target.name]: e.target.value});
   }
 
-  addMessage(e) {
-
-      const message = {
-        message: this.state.message,
-      };
-
-      const options = {
-        method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': Cookies.get('csrftoken'),
-          },
-          body: JSON.stringify(message),
-      }
-
-      fetch('/api/v1/chatmessages/', options)
-        .then(response => {
-          const messages = [...this.state.messages];
-          this.setState({ messages })
-        })
-    }
+  // addMessage(e) {
+  //
+  //     const message = {
+  //       message: this.state.message,
+  //     };
+  //
+  //     const options = {
+  //       method: 'POST',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //           'X-CSRFToken': Cookies.get('csrftoken'),
+  //         },
+  //         body: JSON.stringify(message),
+  //     }
+  //
+  //     fetch('/api/v1/chatmessages/', options)
+  //       .then(response => {
+  //         const messages = [...this.state.messages];
+  //         this.setState({ messages })
+  //       })
+  //   }
 
 
 
