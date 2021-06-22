@@ -20,14 +20,14 @@ class Registration extends React.Component {
     }
 
     handleSubmit(e) {
-      e.preventDefault()
+      e.preventDefault();
       this.props.handleRegistration(this.state);
     }
 
 
     render() {
       return (
-        <form onSubmit={this.handleRegistration}>
+        <form onSubmit={this.handleSubmit}>
           <input type="text" placeholder="username" name="username" value={this.state.username} onChange={this.handleInput}/>
           <input type="email" placeholder="email" name="email" value={this.state.email} onChange={this.handleInput}/>
           <input type="password" placeholder="password" name="password1" value={this.state.password1} onChange={this.handleInput}/>

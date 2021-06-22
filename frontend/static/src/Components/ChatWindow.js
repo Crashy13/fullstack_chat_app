@@ -1,4 +1,5 @@
 import React from 'react'
+import MessageInputs from './MessageInputs'
 
 class ChatWindow extends React.Component {
   constructor(props) {
@@ -29,6 +30,7 @@ class ChatWindow extends React.Component {
     return(
       <>
         {messages}
+        <MessageInputs />
       </>
     )
   }

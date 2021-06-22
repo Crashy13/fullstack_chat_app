@@ -18,6 +18,26 @@ class MessageInputs extends React.Component {
     this.setState({[e.target.name]: e.target.value});
   }
 
+  async addMessage(message) {
+    const options = {
+      method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': Cookies.get('csrftoken'),
+        },
+        body: JSON.stringify(message),
+    }
+
+    const handleError = (err) => console.warn(err);
+    const response = await fetch('/api/v1/chatmessages/', options).catch(handleError);
+
+    if(response.ok) {
+      const data = await response.json().catch(handleError);
+      Cookies.set('Authorization', `Token ${data.key}`);
+      this.setState({ selection: 'chatwindow' });
+    }
+  }
+
 
 
   render() {
