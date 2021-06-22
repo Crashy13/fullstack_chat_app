@@ -1,5 +1,5 @@
 import React from 'react'
-import Cookies from 'js-cookie';
+import Cookies from 'js-cookie'
 
 class MessageInputs extends React.Component {
   constructor(props) {
@@ -18,25 +18,27 @@ class MessageInputs extends React.Component {
     this.setState({[e.target.name]: e.target.value});
   }
 
-  async addMessage(message) {
-    const options = {
-      method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRFToken': Cookies.get('csrftoken'),
-        },
-        body: JSON.stringify(message),
-    }
+  addMessage(e) {
 
-    const handleError = (err) => console.warn(err);
-    const response = await fetch('/api/v1/chatmessages/', options).catch(handleError);
+      const message = {
+        message: this.state.message,
+      };
 
-    if(response.ok) {
-      const data = await response.json().catch(handleError);
-      Cookies.set('Authorization', `Token ${data.key}`);
-      this.setState({ selection: 'chatwindow' });
+      const options = {
+        method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': Cookies.get('csrftoken'),
+          },
+          body: JSON.stringify(message),
+      }
+
+      fetch('/api/v1/chatmessages/', options)
+        .then(response => {
+          const messages = [...this.state.messages];
+          this.setState({ messages })
+        })
     }
-  }
 
 
 

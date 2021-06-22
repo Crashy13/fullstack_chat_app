@@ -87,6 +87,8 @@ class ChatApp extends React.Component {
 
 
 
+
+
   render(){
 
     return (
@@ -95,7 +97,7 @@ class ChatApp extends React.Component {
         <div className="container">
           {this.state.selection === 'login' && <Login handleNavigation={this.handleNavigation} handleLogin={this.handleLogin}/>}
           {this.state.selection === 'registration' && <Registration handleNavigation={this.handleNavigation} handleRegistration ={this.handleRegistration}/>}
-          {this.state.selection === 'chatwindow' && <ChatWindow addMessage={this.addMessage}/>}
+          {this.state.selection === 'chatwindow' && <ChatWindow />}
         </div>
       </>
     )

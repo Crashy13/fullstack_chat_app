@@ -1,5 +1,4 @@
 import React from 'react';
-import Cookies from 'js-cookie'
 
 class Login extends React.Component {
   constructor(props) {
@@ -26,7 +25,7 @@ class Login extends React.Component {
 
     render() {
       return (
-        <form onSubmit={this.handleLogin}>
+        <form onSubmit={this.handleSubmit}>
           <input type="text" placeholder="username" name="username" value={this.state.username} onChange={this.handleInput}/>
           <input type="email" placeholder="email" name="email" value={this.state.email} onChange={this.handleInput}/>
           <input type="password" placeholder="password" name="password" value={this.state.password1} onChange={this.handleInput}/>

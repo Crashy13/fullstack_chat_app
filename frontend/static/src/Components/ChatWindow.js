@@ -21,7 +21,7 @@ class ChatWindow extends React.Component {
     const messages = this.state.messages.map(message => (
       <ul>
       <li key={message.id}>
-        <p>{JSON.stringify(message.username)}</p>
+        <p>{message.username}</p>
         <p className="message_display">{JSON.stringify(message.message)}</p>
         <p className="date-field">{message.created_at}</p>
       </li>
@@ -30,7 +30,7 @@ class ChatWindow extends React.Component {
     return(
       <>
         {messages}
-        <MessageInputs />
+        <MessageInputs addmessage={this.addMessage} />
       </>
     )
   }
