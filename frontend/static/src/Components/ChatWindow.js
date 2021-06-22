@@ -1,5 +1,6 @@
 import React from 'react'
 import MessageInputs from './MessageInputs'
+import Cookies from 'js-cookie'
 
 class ChatWindow extends React.Component {
   constructor(props) {
@@ -15,6 +16,17 @@ class ChatWindow extends React.Component {
       .then(data => this.setState({ messages: data }));
   }
 
+  removeMessage() {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': Cookies.get('csrftoken')
+      }
+    }
+    fetch('/api/v1/chatmessages/', options)
+
+  }
 
 
   render() {
@@ -24,6 +36,7 @@ class ChatWindow extends React.Component {
         <p>{message.username}</p>
         <p className="message_display">{JSON.stringify(message.message)}</p>
         <p className="date-field">{message.created_at}</p>
+        <button>Delete</button>
       </li>
       </ul>
     ))
