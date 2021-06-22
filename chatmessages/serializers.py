@@ -9,4 +9,4 @@ class ChatMessageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ChatMessage
-        fields = ('username', 'message')
+        fields = '__all__'

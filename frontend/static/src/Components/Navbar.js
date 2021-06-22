@@ -1,11 +1,9 @@
 function Navbar(props) {
   return(
     <nav>
-      <div>
-        <button onClick={() => props.handleNavigation('login')}>Login</button>
-        <button onClick={() => props.handleNavigation('registration')}>Register</button>
-        <button onClick={() => props.handleLogout('logout')}>Logout</button>
-      </div>
+        <button className="login" onClick={() => props.handleNavigation('login')}>Login</button>
+        <button className="registration" onClick={() => props.handleNavigation('registration')}>Register</button>
+        <button className="logout" onClick={() => props.handleLogout('logout')}>Logout</button>
     </nav>
   )
 }

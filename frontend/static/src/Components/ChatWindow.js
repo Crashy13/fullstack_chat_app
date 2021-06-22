@@ -1,6 +1,7 @@
 import React from 'react'
 import MessageInputs from './MessageInputs'
 import Cookies from 'js-cookie'
+import Moment from 'react-moment';
 
 class ChatWindow extends React.Component {
   constructor(props) {
@@ -16,16 +17,41 @@ class ChatWindow extends React.Component {
       .then(data => this.setState({ messages: data }));
   }
 
-  removeMessage() {
+  removeMessage(id) {
     const options = {
-      method: 'POST',
+      method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        'X-CSRFToken': Cookies.get('csrftoken')
-      }
+        'X-CSRFToken': Cookies.get('csrftoken'),
+      },
     }
-    fetch('/api/v1/chatmessages/', options)
 
+    fetch(`/api/v1/chatmessages/`, options)
+      .then(response => {
+        const messages = [...this.state.messages];
+        const index = messages.findIndex(message => message.id === id);
+        messages.splice(index, 1);
+        this.setState({messages})
+      })
+  }
+
+  editMessage(id) {
+    const message = {
+      title: 'Message',
+    }
+
+    const options = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': Cookies.get('csrftoken'),
+      },
+      body: JSON.stringify(message),
+    }
+
+    fetch(`/api/v1/chatmessages/`, options)
+      .then(response => response.json())
+      .then(data => console.log(data));
   }
 
 
@@ -33,10 +59,11 @@ class ChatWindow extends React.Component {
     const messages = this.state.messages.map(message => (
       <ul>
       <li key={message.id}>
-        <p>{message.username}</p>
+        <p className="username">{message.username}</p>
         <p className="message_display">{JSON.stringify(message.message)}</p>
-        <p className="date-field">{message.created_at}</p>
-        <button>Delete</button>
+        <Moment format="MM/DD/YYYY hh:mm:ss" className="date-field">{message.created_at}</Moment>
+        <button type='button' onClick={() => this.editMessage(message.id)}>Edit</button>
+        <button type='button' onClick={() => this.removeMessage(message.id)}>Delete</button>
       </li>
       </ul>
     ))
