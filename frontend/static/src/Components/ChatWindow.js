@@ -17,7 +17,7 @@ class ChatWindow extends React.Component {
 
 
   render() {
-    const messages = [...this.state.messages].map(message => (
+    const messages = this.state.messages.map(message => (
       <ul>
       <li key={message.id}>
         <p>{JSON.stringify(message.username)}</p>

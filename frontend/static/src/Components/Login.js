@@ -10,48 +10,18 @@ class Login extends React.Component {
         password: '',
       }
 
-      // this.handleSubmit = this.handleSubmit.bind(this)
-      this.handleLogin = this.handleLogin.bind(this)
+      this.handleSubmit = this.handleSubmit.bind(this)
       this.handleInput = this.handleInput.bind(this)
     }
-
-    async handleLogin(e) {
-      e.preventDefault();
-
-      const user = {
-        username: this.state.username,
-        email: this.state.email,
-        password: this.state.password,
-      }
-
-      const options = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRFToken': Cookies.get('csrftoken'),
-        },
-        body: JSON.stringify(user),
-      };
-
-      const handleError = (err) => console.warn(err);
-      const response = await fetch('/rest-auth/login/', options).catch(handleError);
-      const data = await response.json().catch(handleError);
-
-      console.log(user)
-      if(data.key) {
-        Cookies.set('Authorization', `Token ${data.key}`);
-      }
-
-      }
 
     handleInput(e) {
       this.setState({[e.target.name]: e.target.value})
     }
 
-    // handleSubmit(e) {
-    //   e.preventDefault()
-    //   this.props.handleLogin(this.state)
-    // }
+    handleSubmit(e) {
+      e.preventDefault()
+      this.props.handleLogin(this.state)
+    }
 
 
     render() {
