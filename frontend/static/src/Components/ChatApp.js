@@ -94,11 +94,11 @@ class ChatApp extends React.Component {
     return (
       <>
         <Navbar handleNavigation={this.handleNavigation} isAuth={this.state.selection === 'chatwindow'} handleLogout={this.handleLogout}/>
-        <div className="container">
           {this.state.selection === 'login' && <Login handleNavigation={this.handleNavigation} handleLogin={this.handleLogin}/>}
           {this.state.selection === 'registration' && <Registration handleNavigation={this.handleNavigation} handleRegistration ={this.handleRegistration}/>}
           {this.state.selection === 'chatwindow' && <ChatWindow />}
-        </div>
+        // <div className="container">
+        // </div>
       </>
     )
   }
