@@ -13,7 +13,12 @@ class ChatWindow extends React.Component {
 
   componentDidMount() {
     fetch('/api/v1/chatmessages/')
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
       .then(data => this.setState({ messages: data }));
   }
 
@@ -26,7 +31,7 @@ class ChatWindow extends React.Component {
       },
     }
 
-    fetch(`/api/v1/chatmessages/`, options)
+    fetch(`/api/v1/chatmessages/${id}/`, options)
       .then(response => {
         const messages = [...this.state.messages];
         const index = messages.findIndex(message => message.id === id);
@@ -37,11 +42,11 @@ class ChatWindow extends React.Component {
 
   editMessage(id) {
     const message = {
-      title: 'Message',
+      message: 'Message'
     }
 
     const options = {
-      method: 'PUT',
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
         'X-CSRFToken': Cookies.get('csrftoken'),
@@ -49,7 +54,7 @@ class ChatWindow extends React.Component {
       body: JSON.stringify(message),
     }
 
-    fetch(`/api/v1/chatmessages/`, options)
+    fetch(`/api/v1/chatmessages/${id}/`, options)
       .then(response => response.json())
       .then(data => console.log(data));
   }

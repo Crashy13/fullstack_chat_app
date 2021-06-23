@@ -89,8 +89,8 @@ class ChatApp extends React.Component {
 
 
 
-  render(){
 
+  render(){
     return (
       <>
         <Navbar handleNavigation={this.handleNavigation} isAuth={this.state.selection === 'chatwindow'} handleLogout={this.handleLogout}/>
