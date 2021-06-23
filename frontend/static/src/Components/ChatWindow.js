@@ -8,7 +8,14 @@ class ChatWindow extends React.Component {
     super(props);
     this.state = {
       messages: [],
+      isEditing: false,
+      text: '',
     }
+    this.handleInput = this.handleInput.bind(this)
+  }
+
+  handleInput(e) {
+    this.setState({[e.target.name]: e.target.value})
   }
 
   componentDidMount() {
@@ -41,9 +48,13 @@ class ChatWindow extends React.Component {
   }
 
   editMessage(id) {
-    const message = {
-      message: 'Message'
-    }
+    const message = [...this.state.messages];
+    const index = message.findIndex(message => message.id === id);
+    message[index].message = message;
+    this.setState({message})
+  }
+
+  saveMessage(id, message) {
 
     const options = {
       method: 'PATCH',
@@ -55,8 +66,12 @@ class ChatWindow extends React.Component {
     }
 
     fetch(`/api/v1/chatmessages/${id}/`, options)
-      .then(response => response.json())
-      .then(data => console.log(data));
+      .then(response => {
+        const messages = [...this.state.messages];
+        const index = messages.findIndex(message => message.id === message.id);
+        messages[index].message = message;
+        this.setState({messages})
+      })
   }
 
 
@@ -67,7 +82,11 @@ class ChatWindow extends React.Component {
         <p className="username">{message.username}</p>
         <p className="message_display">{JSON.stringify(message.message)}</p>
         <Moment format="MM/DD/YYYY hh:mm:ss" className="date-field">{message.created_at}</Moment>
-        <button type='button' onClick={() => this.editMessage(message.id)}>Edit</button>
+
+        <input type="text" name="text" value={this.state.text} onChange={this.handleInput}/>
+        <button type='button' onClick={() => this.saveMessage(message.id)}>Save</button>
+        
+        <button type="button" onClick={() => this.editMessage(message.id)}>Edit</button>
         <button type='button' onClick={() => this.removeMessage(message.id)}>Delete</button>
       </li>
       </ul>
