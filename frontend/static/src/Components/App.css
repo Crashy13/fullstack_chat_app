@@ -38,7 +38,7 @@ nav {
 
 .message_display {
   align-self: flex-end;
-  width: 50%;
+  width: 75%;
   background: #5F8BEB;
   border-radius: 5px;
   display: flex;
@@ -60,7 +60,7 @@ nav {
 .username {
   border-radius: 5px;
   background-color: #CBCEDE;
-  width: 50%;
+  width: 30%;
   color: #35363A;
   font-weight: bolder;
   text-align: center;
