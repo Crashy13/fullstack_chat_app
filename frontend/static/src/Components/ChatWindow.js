@@ -1,7 +1,6 @@
 import React from 'react'
 import MessageInputs from './MessageInputs'
 import Cookies from 'js-cookie'
-import Moment from 'react-moment';
 import MessageDetail from './MessageDetail'
 
 
@@ -41,15 +40,21 @@ class ChatWindow extends React.Component {
         'X-CSRFToken': Cookies.get('csrftoken'),
       },
       body: JSON.stringify(chatMessage),
+      // the content being sent to the backend
     }
 
     fetch(`/api/v1/chatmessages/${chatMessage.id}/`, options)
       .then(response => response.json())
+      // takes the response from the fetch request and turns it into json
       .then(data => {
         const messages = [...this.state.messages];
+        // makes a shallow copy of messages
         const index = messages.findIndex(message => message.id === chatMessage.id);
+        // finds the index of the message and makes sure the message id is equal to the original chatMessage id to replace it
         messages[index] = data;
+        // changes the value of the message to the value of the data that was PUT up
         this.setState({messages});
+        // sets state to the new list of messages
       });
   }
 

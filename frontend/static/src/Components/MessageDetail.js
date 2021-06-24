@@ -1,5 +1,6 @@
-import React from 'react'
-import Cookies from 'js-cookie'
+import React from 'react';
+import Moment from 'react-moment';
+import Cookies from 'js-cookie';
 
 
 class MessageDetail extends React.Component {
@@ -41,9 +42,13 @@ class MessageDetail extends React.Component {
 
   saveMessage() {
     const chatMessage = this.props.chatMessage;
+    // calls chatMessage from the parent
     chatMessage.message = this.state.message;
+    // sets the message from chatMessage to state
     this.props.updateMessage(chatMessage);
+    // calls the method updateMessage from the parent
     this.setState({isEditing: false});
+    // changes isEditing back to false so it returns to the default view
   }
 
   render() {
@@ -58,6 +63,7 @@ class MessageDetail extends React.Component {
 
         {this.state.isEditing
           ? <button type='button' onClick={this.saveMessage}>Save</button>
+          // this.saveMessage called the saveMessage function above
           : <button type="button" onClick={() => this.setState({isEditing: true})}>Edit</button>}
 
         <button type='button' onClick={() => this.removeMessage(chatMessage.id)}>Delete</button>
