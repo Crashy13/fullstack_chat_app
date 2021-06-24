@@ -22,23 +22,6 @@ class MessageDetail extends React.Component {
     this.setState({[event.target.name]: event.target.value})
   }
 
-  removeMessage(id) {
-    const options = {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRFToken': Cookies.get('csrftoken'),
-      },
-    }
-
-    fetch(`/api/v1/chatmessages/${id}/`, options)
-      .then(response => {
-        const messages = [...this.state.messages];
-        const index = messages.findIndex(message => message.id === id);
-        messages.splice(index, 1);
-        this.setState({messages})
-      })
-  }
 
   saveMessage() {
     const chatMessage = this.props.chatMessage;
@@ -66,7 +49,7 @@ class MessageDetail extends React.Component {
           // this.saveMessage called the saveMessage function above
           : <button type="button" onClick={() => this.setState({isEditing: true})}>Edit</button>}
 
-        <button type='button' onClick={() => this.removeMessage(chatMessage.id)}>Delete</button>
+        <button type='button' onClick={() => this.props.removeMessage(chatMessage.id)}>Delete</button>
         <Moment format="MM/DD/YYYY hh:mm:ss" className="date-field">{chatMessage.created_at}</Moment>
       </li>
     )

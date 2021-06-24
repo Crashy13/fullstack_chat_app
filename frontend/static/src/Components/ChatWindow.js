@@ -14,6 +14,7 @@ class ChatWindow extends React.Component {
     }
     this.handleInput = this.handleInput.bind(this);
     this.updateMessage = this.updateMessage.bind(this);
+    this.removeMessage = this.removeMessage.bind(this);
   }
 
   handleInput(e) {
@@ -29,6 +30,24 @@ class ChatWindow extends React.Component {
         return response.json();
       })
       .then(data => this.setState({ messages: data }));
+  }
+
+  removeMessage(id) {
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': Cookies.get('csrftoken'),
+      },
+    }
+
+    fetch(`/api/v1/chatmessages/${id}/`, options)
+      .then(response => {
+        const messages = [...this.state.messages];
+        const index = messages.findIndex(message => message.id === id);
+        messages.splice(index, 1);
+        this.setState({messages})
+      })
   }
 
   updateMessage(chatMessage) {
@@ -62,14 +81,14 @@ class ChatWindow extends React.Component {
 
     const messages = this.state.messages.map(message => (
 
-    <MessageDetail key={message.id} chatMessage={message} updateMessage={this.updateMessage}/>
+    <MessageDetail key={message.id} chatMessage={message} updateMessage={this.updateMessage} removeMessage={this.removeMessage}/>
 
 
     ))
     return(
       <>
         <ul>{messages}</ul>
-        <MessageInputs addmessage={this.addMessage} />
+        <MessageInputs addmessage={this.addMessage}/>
       </>
     )
   }
