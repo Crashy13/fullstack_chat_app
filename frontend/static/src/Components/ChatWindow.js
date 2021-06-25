@@ -15,6 +15,7 @@ class ChatWindow extends React.Component {
     this.handleInput = this.handleInput.bind(this);
     this.updateMessage = this.updateMessage.bind(this);
     this.removeMessage = this.removeMessage.bind(this);
+    this.fetchData = this.fetchData.bind(this);
   }
 
   handleInput(e) {
@@ -22,6 +23,14 @@ class ChatWindow extends React.Component {
   }
 
   componentDidMount() {
+    this.retrieveMessages = setInterval(this.fetchData, 1000)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.retrieveMessages)
+  }
+
+  fetchData() {
     fetch('/api/v1/chatmessages/')
       .then(response => {
         if (!response.ok) {
