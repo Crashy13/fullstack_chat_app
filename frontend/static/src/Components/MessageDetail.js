@@ -21,7 +21,6 @@ class MessageDetail extends React.Component {
     this.setState({[event.target.name]: event.target.value})
   }
 
-
   saveMessage() {
     const chatMessage = this.props.chatMessage;
     // calls chatMessage from the parent
@@ -41,14 +40,21 @@ class MessageDetail extends React.Component {
 
         {this.state.isEditing
           ? <input type="text" name="message" value={this.state.message} onChange={this.handleInput}/>
-          : <p className="message_display">{chatMessage.message}</p>}
+          : <p className="message_display">{chatMessage.message}</p>
+        }
+
+        {
+          chatMessage.is_owner && <button type='button' onClick={() => this.props.removeMessage(chatMessage.id)}>Delete</button>
+        }
 
         {this.state.isEditing
           ? <button type='button' onClick={this.saveMessage}>Save</button>
           // this.saveMessage called the saveMessage function above
-          : <button type="button" onClick={() => this.setState({isEditing: true})}>Edit</button>}
+          : chatMessage.is_owner && <button type="button" onClick={() => this.setState({isEditing: true})}>Edit</button>
+        }
 
-        <button type='button' onClick={() => this.props.removeMessage(chatMessage.id)}>Delete</button>
+
+
         <Moment format="MM/DD/YYYY hh:mm:ss" className="date-field">{chatMessage.created_at}</Moment>
       </li>
     )

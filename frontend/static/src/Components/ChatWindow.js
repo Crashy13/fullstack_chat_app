@@ -9,8 +9,8 @@ class ChatWindow extends React.Component {
     super(props);
     this.state = {
       messages: [],
-      isEditing: null,
-      text: '',
+      // isEditing: null,
+      // text: '',
     }
     this.handleInput = this.handleInput.bind(this);
     this.updateMessage = this.updateMessage.bind(this);
