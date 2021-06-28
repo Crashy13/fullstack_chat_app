@@ -23,7 +23,7 @@ class ChatWindow extends React.Component {
   }
 
   componentDidMount() {
-    this.retrieveMessages = setInterval(this.fetchData, 1000)
+    this.retrieveMessages = setInterval(this.fetchData, 500)
   }
 
   componentWillUnmount() {
@@ -96,8 +96,12 @@ class ChatWindow extends React.Component {
     ))
     return(
       <>
+      <div className="container">
+        <div className= "chat-window">
         <ul>{messages}</ul>
+        </div>
         <MessageInputs addmessage={this.addMessage}/>
+      </div>
       </>
     )
   }

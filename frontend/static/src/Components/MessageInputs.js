@@ -40,7 +40,7 @@ class MessageInputs extends React.Component {
         })
     }
 
-    
+
 
 
 
@@ -52,7 +52,7 @@ class MessageInputs extends React.Component {
     ))
     return(
       <form className="input_field" onSubmit={this.addMessage}>
-      <input className="type_input" type="textarea" name="message" value={this.state.message} onChange={this.handleInput}/>
+      <textarea className="type_input" type="textarea" name="message" value={this.state.message} onChange={this.handleInput}/>
       <button className="button_input" type="submit">Send</button>
       </form>
     )

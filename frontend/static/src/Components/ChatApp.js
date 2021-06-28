@@ -88,14 +88,20 @@ class ChatApp extends React.Component {
 
 
   render(){
+    let html;
+
+    if(this.state.selection === 'registration') {
+      html = <Registration handleNavigation={this.handleNavigation} handleRegistration ={this.handleRegistration}/>
+    } else if(this.state.selection === 'login') {
+      html = <Login handleNavigation={this.handleNavigation} handleLogin={this.handleLogin}/>
+    } else if(this.state.selection === 'chatwindow') {
+      html = <ChatWindow />
+    }
+
     return (
       <>
         <Navbar handleNavigation={this.handleNavigation} isAuth={this.state.selection === 'chatwindow'} handleLogout={this.handleLogout}/>
-          <div className="container">
-            {this.state.selection === 'login' && <Login handleNavigation={this.handleNavigation} handleLogin={this.handleLogin}/>}
-            {this.state.selection === 'registration' && <Registration handleNavigation={this.handleNavigation} handleRegistration ={this.handleRegistration}/>}
-            {this.state.selection === 'chatwindow' && <ChatWindow />}
-          </div>
+              {html}
       </>
     )
   }

@@ -42,6 +42,8 @@ class MessageDetail extends React.Component {
           ? <input type="text" name="message" value={this.state.message} onChange={this.handleInput}/>
           : <p className="message_display">{chatMessage.message}</p>}
 
+        <Moment format="MM/DD/YYYY hh:mm" className="date-field">{chatMessage.created_at}</Moment>
+
         {chatMessage.is_owner && <button type='button' onClick={() => this.props.removeMessage(chatMessage.id)}>Delete</button>}
 
         {this.state.isEditing
@@ -49,8 +51,6 @@ class MessageDetail extends React.Component {
           // this.saveMessage called the saveMessage function above
           : chatMessage.is_owner && <button type="button" onClick={() => this.setState({isEditing: true})}>Edit</button>}
 
-
-        <Moment format="MM/DD/YYYY hh:mm" className="date-field">{chatMessage.created_at}</Moment>
       </li>
     )
   }

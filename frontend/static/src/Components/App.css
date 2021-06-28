@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: tahoma, sans-serif;
 }
 
 ul {
@@ -24,21 +25,89 @@ nav {
   display: flex;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  margin: 1% 25%;
+.registration_container {
+  width: 500px;
+  min-width: 390px;
+  height: 600px;
+  margin: 20px auto;
+  padding: 25px;
   border: 1px solid black;
   background-color: #2D313B;
   border-radius: 20px;
   color: #FFF;
+  box-shadow: 0 3px #ccc;
 }
 
+.login_container {
+  width: 500px;
+  min-width: 390px;
+  height: 600px;
+  margin: 20px auto;
+  padding: 25px;
+  border: 1px solid black;
+  background-color: #2D313B;
+  border-radius: 20px;
+  color: #FFF;
+  box-shadow: 0 3px #ccc;
+}
+
+.login_button {
+  width: 25%;
+  margin: 5px 0 10px 5px;
+  border-radius: 20px;
+  padding: 5px 15px
+}
+
+.login_button:hover {
+  background: #5F8BEB;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  min-width: 390px;
+  height: 600px;
+  margin: 20px auto;
+  padding: 25px;
+  border: 1px solid black;
+  background-color: #2D313B;
+  border-radius: 20px;
+  color: #FFF;
+  box-shadow: 0 3px #ccc;
+}
+
+.chat-window {
+  padding: 10px;
+  width: 100%;
+  height: 450px;
+  overflow: hidden;
+  overflow-y: scroll;
+  scroll
+}
+
+.chat-window::-webkit-scrollbar {
+  width: 10px;
+}
+
+.chat-window::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: rgba(0,0,0,2)
+}
+
+.chats {
+  display: flex;
+  flex-flow: row;
+  align-items: flex-start;
+}
 
 .message_display {
-  align-self: flex-end;
-  width: 75%;
+  display: flex;
+  flex-flow: row;
+  align-items: flex-start;
+  width: 90%;
+  padding: 15px;
+  margin: 5px 10px 0;
   background: #5F8BEB;
   border-radius: 5px;
   display: flex;
@@ -46,15 +115,35 @@ nav {
   align-items: center;
 }
 
+.input_field {
+  margin-top: 20px;
+}
+
 .type_input {
   width: 75%;
+  resize: none;
+  font-size: 18px;
+  font:
+}
 
+.type_input::-webkit-scrollbar {
+  width: 10px;
+}
+
+.type_input::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: rgba(0,0,0,.2)
 }
 
 .button_input {
   width: 25%;
   margin: 5px 0 10px 5px;
-  border-radius: 20px
+  border-radius: 20px;
+  padding: 5px 15px
+}
+
+.button_input:hover {
+  background: #5F8BEB;
 }
 
 .username {

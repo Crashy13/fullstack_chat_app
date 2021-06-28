@@ -26,13 +26,20 @@ class Registration extends React.Component {
 
     render() {
       return (
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" placeholder="username" name="username" value={this.state.username} onChange={this.handleInput}/>
-          <input type="email" placeholder="email" name="email" value={this.state.email} onChange={this.handleInput}/>
-          <input type="password" placeholder="password" name="password1" value={this.state.password1} onChange={this.handleInput}/>
-          <input type="password" placeholder="enter password again" name="password2" value={this.state.password2} onChange={this.handleInput}/>
-          <button type="Submit">Register</button>
-        </form>
+        <div className="registration_container">
+          <form onSubmit={this.handleSubmit}>
+            <h3>Choose A Username</h3>
+            <input type="text" placeholder="username" name="username" value={this.state.username} onChange={this.handleInput}/>
+            <h3>Enter Your Email Address</h3>
+            <input type="email" placeholder="email" name="email" value={this.state.email} onChange={this.handleInput}/>
+            <h3>Choose A Password</h3>
+            <input type="password" placeholder="password" name="password1" value={this.state.password1} onChange={this.handleInput}/>
+            <h3>Enter Your Password Again</h3>
+            <input type="password" placeholder="enter password again" name="password2" value={this.state.password2} onChange={this.handleInput}/>
+            <h3>Click the button below to create your account!</h3>
+            <button className="login_button" type="Submit">Register</button>
+          </form>
+        </div>
       );
     }
   }
