@@ -83,7 +83,6 @@ nav {
   height: 450px;
   overflow: hidden;
   overflow-y: scroll;
-  scroll
 }
 
 .chat-window::-webkit-scrollbar {
